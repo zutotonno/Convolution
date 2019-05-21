@@ -22,5 +22,10 @@ We can start from *SOBEL_WIKI*, but doing only the math operation we actually ne
 We can re-arrange our image as a matrix with each column a small window of the size of the filter (in this case 9 -> 3x3), and as row the number of sliding we can make over the image. Then we can do a single Matrix multiplication between the image (Mx9) and the Sobel filter (9x1). The code is referring to *SOBEL_ANTO_OPTIM.m*
 ### The last way i came up is to make the same thing as before but using an OpenCV library to make the matrix re-arrangement
  In order to avoid every single for-loop we can use the im2col OpenCV function that takes as input the actual image, the size of the filter we want to later apply, and the way of threating the padding and outputs the same Mx9 matrix seen before. Then we can do the usual matrix multiplication. The code is referring to *SOBEL_ANTO_OPTIM_VER2.m*
- ### This four tries are compared in terms of computational time resulting in the table below:
-
+ ### This four tries are compared in terms of computational time resulting in the table below (seconds):
+ 
+| Source IMG   | Wiki code | Sobel_anto | Sobel_anto_optim | Sobel_anto_optim_ver2 |
+|-----------|-----------|------------|------------------|-----------------------|
+| 213*320   | 0.120     | 0.073      | 0.107            | 0.013                 |
+| 1920*1080 | 3.725     | 2.207      | 3.334            | 0.424                 |
+| 3840*2160 | 18.60     | 9.10       | 14.02            | 1.733                 |
